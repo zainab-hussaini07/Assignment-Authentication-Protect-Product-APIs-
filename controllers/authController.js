@@ -1,19 +1,12 @@
-// Import User model so we can create and find users in MongoDB.
 const User = require('../models/User');
-
-// Import bcryptjs so we can compare login password with hashed password.
 const bcrypt = require('bcryptjs');
-// Import jsonwebtoken so we can create JWT tokens.
 const jwt = require('jsonwebtoken');
-// Import asyncHandler to catch async errors automatically.
 const asyncHandler = require('../Middleware/asyncHandler');
 
 
-// Function to create JWT token.
-// It receives user id and puts it inside the token.
 const generateToken = (id) => {
   return jwt.sign(
-    { id: id },                 // Payload: data stored inside token.
+    { id: id },                 
     process.env.JWT_SECRET,     // Secret key from .env.
     { expiresIn: process.env.JWT_EXPIRE } // Token expiry time.
   );

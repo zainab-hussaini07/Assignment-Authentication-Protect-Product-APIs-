@@ -1,7 +1,4 @@
-// Import mongoose to create a user schema and model.
 const mongoose = require('mongoose');
-
-// Import bcryptjs to hash passwords before saving them.
 const bcrypt = require('bcryptjs');
 
 // Create user schema.
@@ -24,8 +21,7 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-// This middleware runs before saving user.
-// It hashes the password before storing it in MongoDB.
+
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) {
     return;

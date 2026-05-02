@@ -1,24 +1,13 @@
-// Import jsonwebtoken to verify token.
 const jwt = require('jsonwebtoken');
-
-// Import User model to find logged-in user.
 const User = require('../models/User');
-
-// Import asyncHandler to handle async errors.
 const asyncHandler = require('./asyncHandler');
-
-
-// This middleware protects private routes.
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
-  // Check if authorization header exists and starts with Bearer.
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
   ) {
-    // Get token from header.
-    // Header format: Bearer tokenHere
     token = req.headers.authorization.split(' ')[1];
 
     // Verify token.
